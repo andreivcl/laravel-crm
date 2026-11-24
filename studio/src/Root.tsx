@@ -4,6 +4,8 @@ import { Brief, briefSchema, defaultBrief, FPS, PALETTES } from "./brief";
 import { calculateDailyMetadata, DailyShort } from "./DailyShort";
 import { HowItsMade } from "./films/HowItsMade";
 import { InThisWorldEp1 } from "./films/inThisWorld/Episode";
+import { NumbersFilm } from "./films/numbers/Film";
+import { FRAMES as NUMBERS_FRAMES } from "./films/numbers/timeline";
 import { FRAMES as EP1_FRAMES } from "./films/inThisWorld/spec";
 import { FPS as FILM_FPS, FRAMES as FILM_FRAMES } from "./films/howItsMade";
 
@@ -39,6 +41,15 @@ export const RemotionRoot: React.FC = () => {
           id="InThisWorldEp1"
           component={InThisWorldEp1}
           durationInFrames={EP1_FRAMES}
+          fps={FILM_FPS}
+          width={1080}
+          height={1920}
+        />
+        {/* "In this world, everyone has a number above their head" – EN, narrated */}
+        <Composition
+          id="Numbers"
+          component={NumbersFilm}
+          durationInFrames={NUMBERS_FRAMES}
           fps={FILM_FPS}
           width={1080}
           height={1920}

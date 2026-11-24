@@ -1,0 +1,1112 @@
+{
+ "sr": 24000,
+ "dur": 77.427,
+ "voice": "am_michael",
+ "lines": [
+  {
+   "id": "rule1",
+   "text": "In this world, everyone has a number above their head.",
+   "start": 0.15,
+   "end": 3.464,
+   "words": [
+    {
+     "w": "In",
+     "start": 0.15,
+     "end": 0.472
+    },
+    {
+     "w": "this",
+     "start": 0.472,
+     "end": 0.793
+    },
+    {
+     "w": "world,",
+     "start": 0.793,
+     "end": 1.115
+    },
+    {
+     "w": "everyone",
+     "start": 1.195,
+     "end": 1.767
+    },
+    {
+     "w": "has",
+     "start": 1.767,
+     "end": 1.992
+    },
+    {
+     "w": "a",
+     "start": 1.992,
+     "end": 2.217
+    },
+    {
+     "w": "number",
+     "start": 2.217,
+     "end": 2.615
+    },
+    {
+     "w": "above",
+     "start": 2.615,
+     "end": 3.014
+    },
+    {
+     "w": "their",
+     "start": 3.014,
+     "end": 3.239
+    },
+    {
+     "w": "head.",
+     "start": 3.239,
+     "end": 3.464
+    }
+   ]
+  },
+  {
+   "id": "rule2",
+   "text": "The higher your number, the stronger you are.",
+   "start": 3.714,
+   "end": 5.982,
+   "words": [
+    {
+     "w": "The",
+     "start": 3.714,
+     "end": 3.908
+    },
+    {
+     "w": "higher",
+     "start": 3.908,
+     "end": 4.252
+    },
+    {
+     "w": "your",
+     "start": 4.252,
+     "end": 4.446
+    },
+    {
+     "w": "number,",
+     "start": 4.446,
+     "end": 4.789
+    },
+    {
+     "w": "the",
+     "start": 4.869,
+     "end": 5.102
+    },
+    {
+     "w": "stronger",
+     "start": 5.102,
+     "end": 5.515
+    },
+    {
+     "w": "you",
+     "start": 5.515,
+     "end": 5.748
+    },
+    {
+     "w": "are.",
+     "start": 5.748,
+     "end": 5.982
+    }
+   ]
+  },
+  {
+   "id": "baker",
+   "text": "A baker? 12.",
+   "start": 6.332000000000001,
+   "end": 7.557,
+   "words": [
+    {
+     "w": "A",
+     "start": 6.332,
+     "end": 6.649
+    },
+    {
+     "w": "baker?",
+     "start": 6.649,
+     "end": 7.21
+    },
+    {
+     "w": "12.",
+     "start": 7.29,
+     "end": 7.557
+    }
+   ]
+  },
+  {
+   "id": "cop",
+   "text": "A cop? 140.",
+   "start": 7.707000000000001,
+   "end": 9.290000000000001,
+   "words": [
+    {
+     "w": "A",
+     "start": 7.707,
+     "end": 7.939
+    },
+    {
+     "w": "cop?",
+     "start": 7.939,
+     "end": 8.172
+    },
+    {
+     "w": "140.",
+     "start": 8.252,
+     "end": 9.29
+    }
+   ]
+  },
+  {
+   "id": "champ",
+   "text": "The champion? 9,999.",
+   "start": 9.44,
+   "end": 12.692,
+   "words": [
+    {
+     "w": "The",
+     "start": 9.44,
+     "end": 9.743
+    },
+    {
+     "w": "champion?",
+     "start": 9.743,
+     "end": 10.28
+    },
+    {
+     "w": "9,999.",
+     "start": 10.36,
+     "end": 12.692
+    }
+   ]
+  },
+  {
+   "id": "decides",
+   "text": "Your number decides everything.",
+   "start": 13.042,
+   "end": 14.871,
+   "words": [
+    {
+     "w": "Your",
+     "start": 13.042,
+     "end": 13.254
+    },
+    {
+     "w": "number",
+     "start": 13.254,
+     "end": 13.63
+    },
+    {
+     "w": "decides",
+     "start": 13.63,
+     "end": 14.168
+    },
+    {
+     "w": "everything.",
+     "start": 14.168,
+     "end": 14.871
+    }
+   ]
+  },
+  {
+   "id": "where",
+   "text": "Where you live. Who steps aside on the street.",
+   "start": 15.021,
+   "end": 17.59,
+   "words": [
+    {
+     "w": "Where",
+     "start": 15.021,
+     "end": 15.276
+    },
+    {
+     "w": "you",
+     "start": 15.276,
+     "end": 15.531
+    },
+    {
+     "w": "live.",
+     "start": 15.531,
+     "end": 15.786
+    },
+    {
+     "w": "Who",
+     "start": 15.866,
+     "end": 16.12
+    },
+    {
+     "w": "steps",
+     "start": 16.12,
+     "end": 16.375
+    },
+    {
+     "w": "aside",
+     "start": 16.375,
+     "end": 16.826
+    },
+    {
+     "w": "on",
+     "start": 16.826,
+     "end": 17.08
+    },
+    {
+     "w": "the",
+     "start": 17.08,
+     "end": 17.335
+    },
+    {
+     "w": "street.",
+     "start": 17.335,
+     "end": 17.59
+    }
+   ]
+  },
+  {
+   "id": "mine",
+   "text": "Mine has been 1. My whole life.",
+   "start": 17.939999999999998,
+   "end": 20.252,
+   "words": [
+    {
+     "w": "Mine",
+     "start": 17.94,
+     "end": 18.236
+    },
+    {
+     "w": "has",
+     "start": 18.236,
+     "end": 18.532
+    },
+    {
+     "w": "been",
+     "start": 18.532,
+     "end": 18.829
+    },
+    {
+     "w": "1.",
+     "start": 18.829,
+     "end": 19.125
+    },
+    {
+     "w": "My",
+     "start": 19.205,
+     "end": 19.483
+    },
+    {
+     "w": "whole",
+     "start": 19.483,
+     "end": 19.974
+    },
+    {
+     "w": "life.",
+     "start": 19.974,
+     "end": 20.252
+    }
+   ]
+  },
+  {
+   "id": "rising",
+   "text": "Today is the Rising, the one day a year numbers can change.",
+   "start": 20.701999999999998,
+   "end": 24.581,
+   "words": [
+    {
+     "w": "Today",
+     "start": 20.702,
+     "end": 21.161
+    },
+    {
+     "w": "is",
+     "start": 21.161,
+     "end": 21.42
+    },
+    {
+     "w": "the",
+     "start": 21.42,
+     "end": 21.679
+    },
+    {
+     "w": "Rising,",
+     "start": 21.679,
+     "end": 22.137
+    },
+    {
+     "w": "the",
+     "start": 22.217,
+     "end": 22.487
+    },
+    {
+     "w": "one",
+     "start": 22.487,
+     "end": 22.756
+    },
+    {
+     "w": "day",
+     "start": 22.756,
+     "end": 23.026
+    },
+    {
+     "w": "a",
+     "start": 23.026,
+     "end": 23.296
+    },
+    {
+     "w": "year",
+     "start": 23.296,
+     "end": 23.565
+    },
+    {
+     "w": "numbers",
+     "start": 23.565,
+     "end": 24.042
+    },
+    {
+     "w": "can",
+     "start": 24.042,
+     "end": 24.312
+    },
+    {
+     "w": "change.",
+     "start": 24.312,
+     "end": 24.581
+    }
+   ]
+  },
+  {
+   "id": "arena",
+   "text": "The whole city fills the arena.",
+   "start": 24.781,
+   "end": 26.587,
+   "words": [
+    {
+     "w": "The",
+     "start": 24.781,
+     "end": 24.98
+    },
+    {
+     "w": "whole",
+     "start": 24.98,
+     "end": 25.332
+    },
+    {
+     "w": "city",
+     "start": 25.332,
+     "end": 25.684
+    },
+    {
+     "w": "fills",
+     "start": 25.684,
+     "end": 25.883
+    },
+    {
+     "w": "the",
+     "start": 25.883,
+     "end": 26.082
+    },
+    {
+     "w": "arena.",
+     "start": 26.082,
+     "end": 26.587
+    }
+   ]
+  },
+  {
+   "id": "vex",
+   "text": "On stage, Champion Vex. 9,999.",
+   "start": 26.787,
+   "end": 31.355999999999998,
+   "words": [
+    {
+     "w": "On",
+     "start": 26.787,
+     "end": 27.412
+    },
+    {
+     "w": "stage,",
+     "start": 27.412,
+     "end": 28.517
+    },
+    {
+     "w": "Champion",
+     "start": 28.597,
+     "end": 28.805
+    },
+    {
+     "w": "Vex.",
+     "start": 28.805,
+     "end": 28.922
+    },
+    {
+     "w": "9,999.",
+     "start": 29.002,
+     "end": 31.356
+    }
+   ]
+  },
+  {
+   "id": "never",
+   "text": "Nobody has ever beaten him.",
+   "start": 31.506,
+   "end": 33.221,
+   "words": [
+    {
+     "w": "Nobody",
+     "start": 31.506,
+     "end": 32.045
+    },
+    {
+     "w": "has",
+     "start": 32.045,
+     "end": 32.257
+    },
+    {
+     "w": "ever",
+     "start": 32.257,
+     "end": 32.633
+    },
+    {
+     "w": "beaten",
+     "start": 32.633,
+     "end": 33.009
+    },
+    {
+     "w": "him.",
+     "start": 33.009,
+     "end": 33.221
+    }
+   ]
+  },
+  {
+   "id": "name",
+   "text": "Then the screen calls a name. Mine.",
+   "start": 33.571,
+   "end": 35.702,
+   "words": [
+    {
+     "w": "Then",
+     "start": 33.571,
+     "end": 33.812
+    },
+    {
+     "w": "the",
+     "start": 33.812,
+     "end": 34.053
+    },
+    {
+     "w": "screen",
+     "start": 34.053,
+     "end": 34.294
+    },
+    {
+     "w": "calls",
+     "start": 34.294,
+     "end": 34.534
+    },
+    {
+     "w": "a",
+     "start": 34.534,
+     "end": 34.775
+    },
+    {
+     "w": "name.",
+     "start": 34.775,
+     "end": 35.016
+    },
+    {
+     "w": "Mine.",
+     "start": 35.096,
+     "end": 35.702
+    }
+   ]
+  },
+  {
+   "id": "laugh",
+   "text": "Everyone laughs.",
+   "start": 36.001999999999995,
+   "end": 37.035,
+   "words": [
+    {
+     "w": "Everyone",
+     "start": 36.002,
+     "end": 36.743
+    },
+    {
+     "w": "laughs.",
+     "start": 36.743,
+     "end": 37.035
+    }
+   ]
+  },
+  {
+   "id": "push",
+   "text": "Vex doesn't even look at me. He just pushes.",
+   "start": 37.335,
+   "end": 40.107,
+   "words": [
+    {
+     "w": "Vex",
+     "start": 37.335,
+     "end": 37.576
+    },
+    {
+     "w": "doesn't",
+     "start": 37.576,
+     "end": 37.816
+    },
+    {
+     "w": "even",
+     "start": 37.816,
+     "end": 38.242
+    },
+    {
+     "w": "look",
+     "start": 38.242,
+     "end": 38.483
+    },
+    {
+     "w": "at",
+     "start": 38.483,
+     "end": 38.724
+    },
+    {
+     "w": "me.",
+     "start": 38.724,
+     "end": 38.965
+    },
+    {
+     "w": "He",
+     "start": 39.045,
+     "end": 39.327
+    },
+    {
+     "w": "just",
+     "start": 39.327,
+     "end": 39.609
+    },
+    {
+     "w": "pushes.",
+     "start": 39.609,
+     "end": 40.107
+    }
+   ]
+  },
+  {
+   "id": "fly",
+   "text": "I fly across the stage.",
+   "start": 40.257,
+   "end": 41.806999999999995,
+   "words": [
+    {
+     "w": "I",
+     "start": 40.257,
+     "end": 40.526
+    },
+    {
+     "w": "fly",
+     "start": 40.526,
+     "end": 40.795
+    },
+    {
+     "w": "across",
+     "start": 40.795,
+     "end": 41.27
+    },
+    {
+     "w": "the",
+     "start": 41.27,
+     "end": 41.538
+    },
+    {
+     "w": "stage.",
+     "start": 41.538,
+     "end": 41.807
+    }
+   ]
+  },
+  {
+   "id": "stay",
+   "text": "I should stay down. Every 1 stays down.",
+   "start": 42.306999999999995,
+   "end": 45.0,
+   "words": [
+    {
+     "w": "I",
+     "start": 42.307,
+     "end": 42.599
+    },
+    {
+     "w": "should",
+     "start": 42.599,
+     "end": 42.892
+    },
+    {
+     "w": "stay",
+     "start": 42.892,
+     "end": 43.184
+    },
+    {
+     "w": "down.",
+     "start": 43.184,
+     "end": 43.477
+    },
+    {
+     "w": "Every",
+     "start": 43.557,
+     "end": 44.218
+    },
+    {
+     "w": "1",
+     "start": 44.218,
+     "end": 44.479
+    },
+    {
+     "w": "stays",
+     "start": 44.479,
+     "end": 44.74
+    },
+    {
+     "w": "down.",
+     "start": 44.74,
+     "end": 45.0
+    }
+   ]
+  },
+  {
+   "id": "getup",
+   "text": "But I get up. And my number changes.",
+   "start": 45.35,
+   "end": 47.668,
+   "words": [
+    {
+     "w": "But",
+     "start": 45.35,
+     "end": 45.535
+    },
+    {
+     "w": "I",
+     "start": 45.535,
+     "end": 45.72
+    },
+    {
+     "w": "get",
+     "start": 45.72,
+     "end": 45.905
+    },
+    {
+     "w": "up.",
+     "start": 45.905,
+     "end": 46.09
+    },
+    {
+     "w": "And",
+     "start": 46.17,
+     "end": 46.441
+    },
+    {
+     "w": "my",
+     "start": 46.441,
+     "end": 46.711
+    },
+    {
+     "w": "number",
+     "start": 46.711,
+     "end": 47.19
+    },
+    {
+     "w": "changes.",
+     "start": 47.19,
+     "end": 47.668
+    }
+   ]
+  },
+  {
+   "id": "two",
+   "text": "2.",
+   "start": 47.918,
+   "end": 48.4,
+   "words": [
+    {
+     "w": "2.",
+     "start": 47.918,
+     "end": 48.4
+    }
+   ]
+  },
+  {
+   "id": "again1",
+   "text": "He hits me again. I get up. 10.",
+   "start": 48.8,
+   "end": 50.894999999999996,
+   "words": [
+    {
+     "w": "He",
+     "start": 48.8,
+     "end": 48.996
+    },
+    {
+     "w": "hits",
+     "start": 48.996,
+     "end": 49.192
+    },
+    {
+     "w": "me",
+     "start": 49.192,
+     "end": 49.388
+    },
+    {
+     "w": "again.",
+     "start": 49.388,
+     "end": 49.735
+    },
+    {
+     "w": "I",
+     "start": 49.815,
+     "end": 49.996
+    },
+    {
+     "w": "get",
+     "start": 49.996,
+     "end": 50.178
+    },
+    {
+     "w": "up.",
+     "start": 50.178,
+     "end": 50.36
+    },
+    {
+     "w": "10.",
+     "start": 50.44,
+     "end": 50.895
+    }
+   ]
+  },
+  {
+   "id": "again2",
+   "text": "Again. 100.",
+   "start": 51.144999999999996,
+   "end": 52.443999999999996,
+   "words": [
+    {
+     "w": "Again.",
+     "start": 51.145,
+     "end": 51.625
+    },
+    {
+     "w": "100.",
+     "start": 51.705,
+     "end": 52.444
+    }
+   ]
+  },
+  {
+   "id": "silent",
+   "text": "The arena goes silent.",
+   "start": 52.943999999999996,
+   "end": 54.324,
+   "words": [
+    {
+     "w": "The",
+     "start": 52.944,
+     "end": 53.163
+    },
+    {
+     "w": "arena",
+     "start": 53.163,
+     "end": 53.718
+    },
+    {
+     "w": "goes",
+     "start": 53.718,
+     "end": 53.937
+    },
+    {
+     "w": "silent.",
+     "start": 53.937,
+     "end": 54.324
+    }
+   ]
+  },
+  {
+   "id": "counts",
+   "text": "Because nobody ever told us what the number really counts.",
+   "start": 54.623999999999995,
+   "end": 58.363,
+   "words": [
+    {
+     "w": "Because",
+     "start": 54.624,
+     "end": 55.077
+    },
+    {
+     "w": "nobody",
+     "start": 55.077,
+     "end": 55.726
+    },
+    {
+     "w": "ever",
+     "start": 55.726,
+     "end": 56.179
+    },
+    {
+     "w": "told",
+     "start": 56.179,
+     "end": 56.435
+    },
+    {
+     "w": "us",
+     "start": 56.435,
+     "end": 56.69
+    },
+    {
+     "w": "what",
+     "start": 56.69,
+     "end": 56.946
+    },
+    {
+     "w": "the",
+     "start": 56.946,
+     "end": 57.202
+    },
+    {
+     "w": "number",
+     "start": 57.202,
+     "end": 57.654
+    },
+    {
+     "w": "really",
+     "start": 57.654,
+     "end": 58.107
+    },
+    {
+     "w": "counts.",
+     "start": 58.107,
+     "end": 58.363
+    }
+   ]
+  },
+  {
+   "id": "strength",
+   "text": "It's not strength.",
+   "start": 58.963,
+   "end": 60.04,
+   "words": [
+    {
+     "w": "It's",
+     "start": 58.963,
+     "end": 59.322
+    },
+    {
+     "w": "not",
+     "start": 59.322,
+     "end": 59.681
+    },
+    {
+     "w": "strength.",
+     "start": 59.681,
+     "end": 60.04
+    }
+   ]
+  },
+  {
+   "id": "backup",
+   "text": "It's how many times you got back up.",
+   "start": 60.339999999999996,
+   "end": 62.43,
+   "words": [
+    {
+     "w": "It's",
+     "start": 60.34,
+     "end": 60.559
+    },
+    {
+     "w": "how",
+     "start": 60.559,
+     "end": 60.778
+    },
+    {
+     "w": "many",
+     "start": 60.778,
+     "end": 61.166
+    },
+    {
+     "w": "times",
+     "start": 61.166,
+     "end": 61.553
+    },
+    {
+     "w": "you",
+     "start": 61.553,
+     "end": 61.772
+    },
+    {
+     "w": "got",
+     "start": 61.772,
+     "end": 61.992
+    },
+    {
+     "w": "back",
+     "start": 61.992,
+     "end": 62.211
+    },
+    {
+     "w": "up.",
+     "start": 62.211,
+     "end": 62.43
+    }
+   ]
+  },
+  {
+   "id": "climb",
+   "text": "9,998. 9,999.",
+   "start": 62.93,
+   "end": 68.05600000000001,
+   "words": [
+    {
+     "w": "9,998.",
+     "start": 62.93,
+     "end": 65.35
+    },
+    {
+     "w": "9,999.",
+     "start": 65.43,
+     "end": 68.056
+    }
+   ]
+  },
+  {
+   "id": "flash",
+   "text": "The screen flashes. Two choices.",
+   "start": 68.456,
+   "end": 70.62400000000001,
+   "words": [
+    {
+     "w": "The",
+     "start": 68.456,
+     "end": 68.756
+    },
+    {
+     "w": "screen",
+     "start": 68.756,
+     "end": 69.055
+    },
+    {
+     "w": "flashes.",
+     "start": 69.055,
+     "end": 69.586
+    },
+    {
+     "w": "Two",
+     "start": 69.666,
+     "end": 70.012
+    },
+    {
+     "w": "choices.",
+     "start": 70.012,
+     "end": 70.624
+    }
+   ]
+  },
+  {
+   "id": "choice",
+   "text": "Hit back. Or walk away.",
+   "start": 70.82400000000001,
+   "end": 72.284,
+   "words": [
+    {
+     "w": "Hit",
+     "start": 70.824,
+     "end": 71.047
+    },
+    {
+     "w": "back.",
+     "start": 71.047,
+     "end": 71.271
+    },
+    {
+     "w": "Or",
+     "start": 71.351,
+     "end": 71.598
+    },
+    {
+     "w": "walk",
+     "start": 71.598,
+     "end": 71.846
+    },
+    {
+     "w": "away.",
+     "start": 71.846,
+     "end": 72.284
+    }
+   ]
+  },
+  {
+   "id": "decide",
+   "text": "You decide. Comment hit, or walk.",
+   "start": 72.68400000000001,
+   "end": 75.06,
+   "words": [
+    {
+     "w": "You",
+     "start": 72.684,
+     "end": 72.988
+    },
+    {
+     "w": "decide.",
+     "start": 72.988,
+     "end": 73.524
+    },
+    {
+     "w": "Comment",
+     "start": 73.604,
+     "end": 74.432
+    },
+    {
+     "w": "hit,",
+     "start": 74.432,
+     "end": 74.899
+    },
+    {
+     "w": "or",
+     "start": 74.979,
+     "end": 75.02
+    },
+    {
+     "w": "walk.",
+     "start": 75.02,
+     "end": 75.06
+    }
+   ]
+  },
+  {
+   "id": "part2",
+   "text": "Most votes is part 2.",
+   "start": 75.26,
+   "end": 76.82700000000001,
+   "words": [
+    {
+     "w": "Most",
+     "start": 75.26,
+     "end": 75.532
+    },
+    {
+     "w": "votes",
+     "start": 75.532,
+     "end": 76.012
+    },
+    {
+     "w": "is",
+     "start": 76.012,
+     "end": 76.284
+    },
+    {
+     "w": "part",
+     "start": 76.284,
+     "end": 76.556
+    },
+    {
+     "w": "2.",
+     "start": 76.556,
+     "end": 76.827
+    }
+   ]
+  }
+ ]
+}
