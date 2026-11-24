@@ -109,7 +109,7 @@ mix.master(bed);
 const voWav = path.join(ROOT, "public/audio/numbers-vo.wav");
 const raw = path.join(ROOT, "public/audio/numbers-mix.raw.wav");
 const fc =
-  "[1:a]aresample=48000,pan=stereo|c0=c0|c1=c0,acompressor=threshold=0.1:ratio=3:attack=5:release=80,volume=1.6,asplit=2[vo1][vo2];" +
+  `[1:a]aresample=48000,pan=stereo|c0=c0|c1=c0,acompressor=threshold=0.1:ratio=3:attack=5:release=80,volume=1.6,apad=whole_dur=${DUR},asplit=2[vo1][vo2];` +
   "[0:a]volume=0.55[bed];[bed][vo1]sidechaincompress=threshold=0.02:ratio=8:attack=15:release=350[duck];" +
   "[duck][vo2]amix=inputs=2:normalize=0[m]";
 execFileSync("ffmpeg", ["-v", "error", "-y", "-i", bed, "-i", voWav, "-filter_complex", fc, "-map", "[m]", "-ar", "48000", "-c:a", "pcm_s16le", raw]);

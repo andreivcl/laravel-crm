@@ -19,11 +19,30 @@ const easeOut = (x: number) => 1 - Math.pow(1 - clamp01(x), 3);
 const lerp = (a: number, b: number, k: number) => a + (b - a) * k;
 const lerp3 = (a: V3, b: V3, k: number): V3 => [lerp(a[0], b[0], k), lerp(a[1], b[1], k), lerp(a[2], b[2], k)];
 
-/** Camera for time t: each shot pushes/drifts from p0→p1 with a soft ease (never fully stops). */
+/**
+ * Camera for time t. Every shot moves the whole time:
+ *  - authored dolly p0→p1 (ease that never fully stops),
+ *  - an extra push toward the subject (8–18 %),
+ *  - an arc around the subject that alternates direction shot to shot,
+ *  - a slow "operator" float of a few centimetres.
+ */
 export const cameraAt = (t: number) => {
-  const { shot, k } = shotAt(t);
-  const kk = 0.6 * k + 0.4 * ease(k);
-  return { shot, position: lerp3(shot.p0, shot.p1, kk), target: lerp3(shot.t0, shot.t1 ?? shot.t0, kk), fov: shot.fov ?? 38 };
+  const { shot, index, k } = shotAt(t);
+  const kk = 0.5 * k + 0.5 * ease(k);
+  const target = lerp3(shot.t0, shot.t1 ?? shot.t0, kk);
+  const base = lerp3(shot.p0, shot.p1, kk);
+  let off = new THREE.Vector3(base[0] - target[0], base[1] - target[1], base[2] - target[2]);
+  const d = off.length();
+  const push = d < 4 ? 0.08 : 0.18;
+  off.multiplyScalar(1 - push * kk);
+  const arcDeg = d < 4 ? 8 : 14;
+  off = off.applyAxisAngle(new THREE.Vector3(0, 1, 0), ((arcDeg * Math.PI) / 180) * (index % 2 ? 1 : -1) * (kk - 0.5));
+  const position: V3 = [
+    target[0] + off.x + 0.04 * Math.sin(t * 0.9 + index),
+    target[1] + off.y + 0.03 * Math.sin(t * 1.3 + index * 2),
+    target[2] + off.z + 0.03 * Math.sin(t * 0.7 + index * 3),
+  ];
+  return { shot, position, target, fov: shot.fov ?? 38 };
 };
 
 // ---------------------------------------------------------------- characters as functions of time
@@ -32,7 +51,7 @@ export type Actor = { id: string; look: Look; pos: V3; rotY: number; rotZ?: numb
 const STAGE_Y = 0.5;
 const PUSH = EV.push;
 const VY = 4.8;
-const VX = -5.0;
+const VX = -4.6;
 const G = 14;
 const T_AIR = (2 * VY) / G;
 const DECEL = 8;
@@ -48,23 +67,25 @@ const cubiArena = (t: number): Partial<Actor> => {
   const t0 = PUSH + 0.12;
   if (t < t0) return { pos: a(X0, STAGE_Y, 0), rotY: Math.PI / 2, expr: "sad", pose: {} };
   const tau = t - t0;
+  const PIV = 0.9; // tumble / lie around the body centre
+  const LOW = -0.65; // centre 0.25 m above the floor when lying
   if (tau < T_AIR) {
     const x = X0 + VX * tau;
-    const y = STAGE_Y + VY * tau - (G * tau * tau) / 2;
-    return { pos: a(x, y, 0), rotY: Math.PI / 2, rotZ: (Math.PI / 2 + Math.PI * 2) * easeOut(tau / T_AIR), lift: 1.0, expr: "shock", pose: { lie: 0.6 } };
+    const y = STAGE_Y + VY * tau - (G * tau * tau) / 2 + LOW * easeOut(tau / T_AIR);
+    return { pos: a(x, y, 0), rotY: Math.PI / 2, rotZ: (Math.PI / 2 + Math.PI * 2) * easeOut(tau / T_AIR), lift: PIV, expr: "shock", pose: { lie: 0.6 } };
   }
   const ts = tau - T_AIR;
   if (ts < T_SLIDE) {
     const x = X_LAND + VX * ts + (DECEL * ts * ts) / 2;
-    return { pos: a(x, STAGE_Y + 0.2, 0), rotY: Math.PI / 2, rotZ: Math.PI / 2, expr: "sad", pose: { lie: 1 } };
+    return { pos: a(x, STAGE_Y + LOW, 0), rotY: Math.PI / 2, rotZ: Math.PI / 2, lift: PIV, expr: "sad", pose: { lie: 1 } };
   }
-  if (t < EV.getUp) return { pos: a(X_REST, STAGE_Y + 0.2, 0), rotY: Math.PI / 2, rotZ: Math.PI / 2, expr: "sad", pose: { lie: 1 } };
+  if (t < EV.getUp) return { pos: a(X_REST, STAGE_Y + LOW, 0), rotY: Math.PI / 2, rotZ: Math.PI / 2, lift: PIV, expr: "sad", pose: { lie: 1 } };
   // get up: roll to knees, then stand
   const g = (t - EV.getUp) / 1.6;
   if (g < 1) {
     const r = ease(g * 2);
     const kn = g < 0.5 ? 1 : 1 - ease((g - 0.5) * 2);
-    return { pos: a(X_REST, STAGE_Y + 0.2 * (1 - r), 0), rotY: Math.PI / 2, rotZ: (Math.PI / 2) * (1 - r), expr: g < 0.6 ? "sad" : "determined", pose: { kneel: kn, lie: 1 - r } };
+    return { pos: a(X_REST, STAGE_Y + LOW * (1 - r), 0), rotY: Math.PI / 2, rotZ: (Math.PI / 2) * (1 - r), lift: PIV, expr: g < 0.6 ? "sad" : "determined", pose: { kneel: kn, lie: 1 - r } };
   }
   // hits: knocked back, recover
   const knock = (th: number) => {
@@ -110,7 +131,7 @@ const STREET_WALKERS = (() => {
   const looks: Look[] = [];
   const out: { look: Look; x: number; z0: number; v: number; n: number; phase: number }[] = [];
   const tops = ["#e63946", "#457b9d", "#2a9d8f", "#e9c46a", "#8338ec", "#ff006e", "#3a86ff"];
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 8; i++) {
     const look: Look = {
       skin: ["#ffd2a8", "#e0ac69", "#c68b59", "#8d5524"][i % 4],
       top: tops[i % tops.length],
@@ -121,7 +142,7 @@ const STREET_WALKERS = (() => {
     };
     looks.push(look);
     const n = [3, 27, 58, 7, 140, 310, 15, 870, 44, 9, 230, 66][i];
-    out.push({ look, x: (r() > 0.5 ? 1 : -1) * (1.2 + r() * 2.6), z0: -34 + r() * 40, v: (r() > 0.5 ? 1 : -1) * (0.35 + r() * 0.3), n, phase: r() * 6 });
+    out.push({ look, x: (r() > 0.5 ? 1 : -1) * (1.2 + r() * 2.6), z0: -34 + r() * 30, v: (i % 4 === 3 ? -1 : 1) * (0.35 + r() * 0.3), n, phase: r() * 6 });
   }
   return out;
 })();

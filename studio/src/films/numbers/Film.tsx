@@ -86,9 +86,12 @@ const NumberTags: React.FC = () => {
   const project = projector(t);
   const { shot } = shotAt(t);
   const tags: React.ReactNode[] = [];
+  // Clutter control: walkers only show numbers in the opening shot; the crowd only in the "ones" shot.
+  const opening = shot.id === "street-crane";
   for (const ac of actorsAt(t)) {
+    if (ac.id.startsWith("w") && !(opening && Number(ac.id.slice(1)) < 4)) continue;
     const lying = Math.abs(Math.sin(ac.rotZ ?? 0));
-    const h = tagHeight(ac.look) * (1 - lying) + 0.9 * lying;
+    const h = tagHeight(ac.look) * (1 - lying) + 1.6 * lying;
     const p = project([ac.pos[0], ac.pos[1] + h, ac.pos[2]]);
     if (!p.visible) continue;
     const hero = ac.id === "cubi" && ac.set === "arena";
@@ -96,8 +99,8 @@ const NumberTags: React.FC = () => {
     const pop = hero ? lastChange(t, (x) => actorsAt(x).find((a) => a.id === "cubi")?.number ?? 0) : 99;
     tags.push(<Tag key={ac.id} x={p.x} y={p.y} depth={p.depth} n={ac.number} pop={pop} flicker={flicker} hero={hero} />);
   }
-  if (shot.set === "arena") {
-    for (const ct of CROWD_TAGS) {
+  if (shot.id === "ones") {
+    for (const ct of CROWD_TAGS.filter((c) => c.n === 1).slice(0, 5)) {
       const p = project(ct.p);
       if (!p.visible || p.depth > 26) continue;
       tags.push(<Tag key={`c${ct.i}`} x={p.x} y={p.y} depth={p.depth * 1.25} n={ct.n} pop={99} />);

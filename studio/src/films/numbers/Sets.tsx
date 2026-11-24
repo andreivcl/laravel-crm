@@ -119,16 +119,37 @@ export const Street: React.FC<{ t: number }> = ({ t }) => {
           </group>
         );
       })}
-      {/* string flags across the street */}
-      {flags.map((f, k) => (
-        <group key={k}>
-          {f.cols.map((c, i) => {
-            const x = -6 + (i + 0.5) * (12 / f.cols.length);
-            const sag = 5.2 - 0.6 * (1 - Math.pow(x / 6, 2));
-            return <Box key={i} p={[x, sag - 0.2, f.z]} s={[0.4, 0.45, 0.04]} c={c} r={[0, 0, Math.sin(t * 2 + i + k) * 0.08]} />;
-          })}
-        </group>
-      ))}
+      {/* string flags on ropes tied between the buildings */}
+      {flags.map((f, k) => {
+        const sagY = (x: number) => 5.2 - 0.6 * (1 - Math.pow(x / 6, 2));
+        const pts: [number, number][] = [];
+        for (let x = -6.6; x <= 6.6001; x += 0.6) pts.push([x, sagY(Math.max(-6, Math.min(6, x))) + 0.05]);
+        return (
+          <group key={k}>
+            {pts.slice(1).map(([x1, y1], i) => {
+              const [x0, y0] = pts[i];
+              const len = Math.hypot(x1 - x0, y1 - y0);
+              return (
+                <mesh key={`r${i}`} position={[(x0 + x1) / 2, (y0 + y1) / 2, f.z]} rotation={[0, 0, Math.atan2(y1 - y0, x1 - x0)]}>
+                  <boxGeometry args={[len, 0.03, 0.03]} />
+                  <meshStandardMaterial color="#2b2b2b" />
+                </mesh>
+              );
+            })}
+            {[-1, 1].map((sd) => (
+              <Box key={sd} p={[sd * 6.55, 5.35, f.z]} s={[0.18, 0.18, 0.18]} c="#3d3d4e" />
+            ))}
+            {f.cols.map((c, i) => {
+              const x = -6 + (i + 0.5) * (12 / f.cols.length);
+              return (
+                <group key={i} position={[x, sagY(x), f.z]} rotation={[0, 0, Math.sin(t * 2 + i + k) * 0.08]}>
+                  <Box p={[0, -0.24, 0]} s={[0.4, 0.45, 0.04]} c={c} />
+                </group>
+              );
+            })}
+          </group>
+        );
+      })}
       {/* street lamps */}
       {[-6, -18, -30].flatMap((z) =>
         [-1, 1].map((s) => (
@@ -199,22 +220,34 @@ export const CROWD: CrowdMember[] = (() => {
 export const Crowd: React.FC<{ members: CrowdMember[]; t: number; bounce: number }> = ({ members, t, bounce }) => {
   const bodies = useRef<THREE.InstancedMesh>(null);
   const heads = useRef<THREE.InstancedMesh>(null);
+  const eyes = useRef<THREE.InstancedMesh>(null);
+  const mouths = useRef<THREE.InstancedMesh>(null);
   useLayoutEffect(() => {
     const m = new THREE.Matrix4();
     const q = new THREE.Quaternion();
-    const sc = new THREE.Vector3(1, 1, 1);
+    const one = new THREE.Vector3(1, 1, 1);
+    const up = new THREE.Vector3(0, 1, 0);
+    const local = (c: CrowdMember, hop: number, x: number, y: number, z: number) =>
+      new THREE.Vector3(x, y, z).applyAxisAngle(up, c.yaw).add(new THREE.Vector3(c.pos.x, c.pos.y + hop, c.pos.z));
+    const laugh = bounce > 0.5;
     members.forEach((c, i) => {
       const hop = bounce * Math.max(0, Math.sin(t * 13 + c.phase)) * 0.12;
-      q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), c.yaw);
-      m.compose(new THREE.Vector3(c.pos.x, c.pos.y + 0.75 + hop, c.pos.z), q, sc);
+      q.setFromAxisAngle(up, c.yaw);
+      m.compose(local(c, hop, 0, 0.75, 0), q, one);
       bodies.current!.setMatrixAt(i, m);
-      m.compose(new THREE.Vector3(c.pos.x, c.pos.y + 1.3 + hop, c.pos.z), q, sc);
+      m.compose(local(c, hop, 0, 1.3, 0), q, one);
       heads.current!.setMatrixAt(i, m);
+      // a face on every head: two eyes + a mouth that opens when the crowd laughs
+      m.compose(local(c, hop, -0.09, 1.34, 0.205), q, one);
+      eyes.current!.setMatrixAt(i * 2, m);
+      m.compose(local(c, hop, 0.09, 1.34, 0.205), q, one);
+      eyes.current!.setMatrixAt(i * 2 + 1, m);
+      m.compose(local(c, hop, 0, 1.22, 0.205), q, new THREE.Vector3(1, laugh ? 2.6 : 1, 1));
+      mouths.current!.setMatrixAt(i, m);
       bodies.current!.setColorAt(i, c.top);
       heads.current!.setColorAt(i, c.skin);
     });
-    bodies.current!.instanceMatrix.needsUpdate = true;
-    heads.current!.instanceMatrix.needsUpdate = true;
+    for (const r of [bodies, heads, eyes, mouths]) r.current!.instanceMatrix.needsUpdate = true;
     if (bodies.current!.instanceColor) bodies.current!.instanceColor.needsUpdate = true;
     if (heads.current!.instanceColor) heads.current!.instanceColor.needsUpdate = true;
   });
@@ -227,6 +260,14 @@ export const Crowd: React.FC<{ members: CrowdMember[]; t: number; bounce: number
       <instancedMesh ref={heads} args={[undefined, undefined, members.length]} castShadow>
         <boxGeometry args={[0.42, 0.4, 0.4]} />
         <meshStandardMaterial roughness={0.7} />
+      </instancedMesh>
+      <instancedMesh ref={eyes} args={[undefined, undefined, members.length * 2]}>
+        <boxGeometry args={[0.07, 0.09, 0.02]} />
+        <meshBasicMaterial color="#1b1b2f" />
+      </instancedMesh>
+      <instancedMesh ref={mouths} args={[undefined, undefined, members.length]}>
+        <boxGeometry args={[0.12, 0.03, 0.02]} />
+        <meshBasicMaterial color="#3b1020" />
       </instancedMesh>
     </>
   );
