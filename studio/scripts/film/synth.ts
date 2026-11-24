@@ -219,11 +219,11 @@ export class Mix {
     h.writeUInt32LE(data.length, 40);
     const raw = file.replace(/\.wav$/, ".raw.wav");
     fs.writeFileSync(raw, Buffer.concat([h, data]));
-    const p1 = execFileSync("sh", ["-c", `ffmpeg -hide_banner -i "${raw}" -af loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json -f null - 2>&1`]).toString();
+    const p1 = execFileSync("sh", ["-c", `ffmpeg -hide_banner -i "${raw}" -af loudnorm=I=-14:TP=-2:LRA=11:print_format=json -f null - 2>&1`]).toString();
     const j = JSON.parse(p1.slice(p1.lastIndexOf("{"), p1.lastIndexOf("}") + 1));
     execFileSync("ffmpeg", [
       "-y", "-hide_banner", "-loglevel", "error", "-i", raw,
-      "-af", `loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=${j.input_i}:measured_TP=${j.input_tp}:measured_LRA=${j.input_lra}:measured_thresh=${j.input_thresh}:offset=${j.target_offset}:linear=true`,
+      "-af", `loudnorm=I=-14:TP=-2:LRA=11:measured_I=${j.input_i}:measured_TP=${j.input_tp}:measured_LRA=${j.input_lra}:measured_thresh=${j.input_thresh}:offset=${j.target_offset}:linear=true`,
       "-ar", String(SR), "-c:a", "pcm_s16le", file,
     ]);
     fs.rmSync(raw);
