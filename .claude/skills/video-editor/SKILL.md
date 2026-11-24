@@ -74,6 +74,45 @@ takes ~45–60 min, so draft at `--scale=0.5` first.
 - **Determinism**: everything from `useCurrentFrame()`; seeded randomness; no
   `useFrame()` from R3F, no CSS transitions.
 
+## Narrated story shorts ("In this world, …")
+
+The format the user wants to grow with. Reference measured (2:09 TikTok): 65 cuts,
+median shot 1.7 s, one word of caption at a time, first-person narrator, blocky 3D
+cast in neon-lit sets, a mystery mid-way, a countdown, and a **comment poll that
+decides part 2**. Build it like `studio/src/films/numbers/`:
+
+1. **Script**: `src/films/<film>/script.json`, a list of lines. Write in English,
+   in the first person, 70–130 s. The hook states the world's rule in line 1.
+   Plant one mystery and pay it off with a twist, then end on a binary choice:
+   "Comment X or Y. Most votes is part 2."
+2. **Voice (free, offline)**: `python3 scripts/voice/vo.py src/films/<film>/script.json public/audio/<film>-vo.wav`.
+   It runs Kokoro (Apache-2.0); the user picked voice `am_michael`. Models are
+   in `~/.cache/kokoro` (download `kokoro-v1.0.onnx` + `voices-v1.0.bin` from
+   github.com/thewh1teagle/kokoro-onnx releases). The script writes
+   `script.vo.json` with line-exact times and word times accurate to ~±80 ms.
+3. **Timeline**: anchor *every* shot and event to a word with `at(lineId, "word")`.
+   Never use a bare second. Aim for a new shot every 1.5–2 s.
+4. **Captions**: one word at a time, lime `#e8ff3a`, 14 px black stroke, popping
+   in from 1.18× scale. Numbers stay digits (the narration says them in words).
+5. **Sound**: `scripts/film/numbers-sound.ts` is the template. Bed (music + SFX)
+   from `scripts/film/synth.ts`, ducked under the voice with ffmpeg
+   `sidechaincompress`, then two-pass master to −14 LUFS / −2 dBTP.
+6. **Finish**: render, then run `scripts/film/finish.sh raw.mp4 master.mp4` for
+   lens bloom + grade.
+   - WebGL post-processing (`@react-three/postprocessing`) renders **black** in
+     Remotion's frame-by-frame renderer: don't use it.
+   - Blend in RGB (`format=gbrp`), or the screen blend shifts colours to magenta.
+
+**Portrait framing math**: at `fov` 38° (vertical) the horizontal half-angle is
+only ~10.9°. A subject is in frame only within ±0.19 × camera distance of the
+target, so two characters 2.8 m apart need ≥ 8–9 m of distance. Fast actions
+(a body flying sideways) need the camera target to *travel with the action*.
+Number tags sit ~2.4 m above the feet: aim the target at y ≈ 2.3–2.6 m in tag
+close-ups and keep ≥ 3 m distance, or the tag leaves the frame.
+
+**Original IP only**: blocky cast, yes; Roblox or Minecraft characters, names,
+textures or logos, no.
+
 ## Editing real footage
 
 `node scripts/edit/autocut.ts in.mp4 out.mp4 [--reframe=crop|blur] [--min-silence=0.45] [--punch=1.08]`
