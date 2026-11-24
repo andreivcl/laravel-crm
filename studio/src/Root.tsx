@@ -2,6 +2,8 @@ import React from "react";
 import { Composition, Folder } from "remotion";
 import { Brief, briefSchema, defaultBrief, FPS, PALETTES } from "./brief";
 import { calculateDailyMetadata, DailyShort } from "./DailyShort";
+import { HowItsMade } from "./films/HowItsMade";
+import { FPS as FILM_FPS, FRAMES as FILM_FRAMES } from "./films/howItsMade";
 
 const vertical = { fps: FPS, width: 1080, height: 1920 } as const;
 
@@ -20,6 +22,17 @@ export const RemotionRoot: React.FC = () => {
         durationInFrames={300}
         {...vertical}
       />
+      {/* 60 s+ film: one shape through 5 build steps, music-grid montage */}
+      <Folder name="Films">
+        <Composition
+          id="HowItsMade"
+          component={HowItsMade}
+          durationInFrames={FILM_FRAMES}
+          fps={FILM_FPS}
+          width={1080}
+          height={1920}
+        />
+      </Folder>
       <Folder name="Styles">
         <Composition
           id="Glass"

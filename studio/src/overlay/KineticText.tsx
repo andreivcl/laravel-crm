@@ -23,16 +23,24 @@ loadFont({
 const EASE_OUT = Easing.bezier(0.16, 1, 0.3, 1);
 const EASE_IN = Easing.bezier(0.7, 0, 0.84, 0);
 
-type Token = { text: string; em: boolean };
+type Token = { text: string; em: boolean; tail?: string };
 
-/** "Asta e *100%* din cod" → tokens, emphasised words flagged. */
+/**
+ * "Asta e *100%* din cod" → tokens, emphasised words flagged. Punctuation
+ * glued to an emphasised word ("*mâine*?") stays on the same line as `tail`.
+ */
 export const tokenize = (line: string): Token[] => {
   const out: Token[] = [];
   line.split(/(\*[^*]+\*)/g).forEach((part) => {
     if (!part) return;
     const em = part.startsWith("*") && part.endsWith("*");
     const clean = em ? part.slice(1, -1) : part;
-    clean
+    const prevEm = out.length > 0 && out[out.length - 1].em;
+    const glued = !em && prevEm && /^[^\s]/.test(clean) ? clean.match(/^[^\s]+/)?.[0] : undefined;
+    if (glued) {
+      out[out.length - 1].tail = (out[out.length - 1].tail ?? "") + glued;
+    }
+    (glued ? clean.slice(glued.length) : clean)
       .split(/\s+/)
       .filter(Boolean)
       .forEach((w) => out.push({ text: w, em }));
@@ -80,8 +88,9 @@ export const KineticLine: React.FC<{
       }}
     >
       {tokens.map((t, i) => {
-        const start = instant ? 0 : 2 + i * 3;
-        const p = interpolate(frame, [start, start + (instant ? 12 : 16)], [0, 1], {
+        // word stagger 2 frames (0.067 s), 14-frame entrance: a 5-word line has fully landed by ~0.8 s
+        const start = instant ? 0 : 2 + i * 2;
+        const p = interpolate(frame, [start, start + (instant ? 12 : 14)], [0, 1], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
           easing: EASE_OUT,
@@ -116,6 +125,20 @@ export const KineticLine: React.FC<{
             }}
           >
             {t.text}
+            {t.tail ? (
+              <span
+                style={{
+                  fontFamily: SANS,
+                  fontStyle: "normal",
+                  fontWeight: 800,
+                  fontSize: size,
+                  color: palette.text,
+                  WebkitTextFillColor: palette.text,
+                }}
+              >
+                {t.tail}
+              </span>
+            ) : null}
           </span>
         );
       })}

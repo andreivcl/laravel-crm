@@ -128,7 +128,7 @@ const useToon = (
   return mats;
 };
 
-const ToonMesh: React.FC<{
+export const ToonMesh: React.FC<{
   geometry: THREE.BufferGeometry;
   color: string;
   palette: Palette;

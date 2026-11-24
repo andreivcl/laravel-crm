@@ -15,6 +15,7 @@
     "@react-three/fiber": "^9.8.2",
     "@remotion/cli": "4.0.546",
     "@remotion/fonts": "4.0.546",
+    "@remotion/media": "4.0.546",
     "@remotion/three": "4.0.546",
     "@remotion/transitions": "4.0.546",
     "@types/three": "^0.187.0",
@@ -46,7 +47,13 @@
     "analytics": "node scripts/analytics/fetch.ts && node scripts/analytics/analyze.ts",
     "analytics:analyze": "node scripts/analytics/analyze.ts",
     "analytics:demo": "node scripts/analytics/demo-data.ts && node scripts/analytics/analyze.ts",
-    "analytics:reset": "node -e \"const fs=require('fs');const r='data/registry.json';fs.rmSync('data/snapshots.jsonl',{force:true});fs.rmSync('data/insights.json',{force:true});if(fs.existsSync(r))fs.writeFileSync(r,JSON.stringify(JSON.parse(fs.readFileSync(r)).filter(e=>!e.postId.startsWith('demo-')),null,2)+'\\n')\""
+    "analytics:reset": "node -e \"const fs=require('fs');const r='data/registry.json';fs.rmSync('data/snapshots.jsonl',{force:true});fs.rmSync('data/insights.json',{force:true});if(fs.existsSync(r))fs.writeFileSync(r,JSON.stringify(JSON.parse(fs.readFileSync(r)).filter(e=>!e.postId.startsWith('demo-')),null,2)+'\\n')\"",
+    "film:timeline": "node scripts/film/timeline.ts",
+    "film:sound": "node scripts/film/sound.ts",
+    "film:draft": "node scripts/film/sound.ts && remotion render HowItsMade out/films/how-its-made/draft.mp4 --scale=0.5 --crf=23",
+    "film:master": "node scripts/film/sound.ts && remotion render HowItsMade out/films/how-its-made/master.mp4 --crf=18",
+    "qa": "python3 tools/video-director/qa_video.py",
+    "edit:autocut": "node scripts/edit/autocut.ts"
   },
   "allowScripts": {
     "esbuild": false

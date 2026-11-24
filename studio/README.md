@@ -61,6 +61,40 @@ Ce le face să arate „de echipă”:
 
 Un stil nou se adaugă în trei pași: creezi `src/scenes/XScene.tsx` (primește `palette`, `angle`, `seed`), îl adaugi în `STYLES` din `src/brief.ts` și în switch-ul din `src/DailyShort.tsx`. Planificatorul îl testează automat.
 
+## Filme de 60s+ (TikTok Creator Rewards cere minimum 1 minut)
+
+`src/films/howItsMade.ts` este un film de referință de 66s: „Cum se face o animație 3D din cod, în 5 pași”. Totul e pus pe un grid muzical de 112.5 BPM, la care 1 beat = 16 cadre. Filmul are:
+- hook din cadrul 0;
+- promisiunea „5 pași” și un chip de progres;
+- un rehook la 35s;
+- o pauză de liniște înainte de momentul-erou (sticla, la 63% din film);
+- un montaj care accelerează;
+- un CTA și un final care se leagă de început.
+
+```bash
+npm run film:timeline    # exportă timeline.json și verifică planul (0 erori)
+npm run film:sound       # coloană sonoră + SFX din același plan, masterizată la −14 LUFS
+npm run film:draft       # randare de probă la 50%
+npm run qa -- out/films/how-its-made/draft.mp4 --out out/qa --beats out/films/how-its-made/timeline.json --loop
+npm run film:master      # master 1080×1920
+```
+
+## Montaj automat pentru filmările tale
+
+```bash
+npm run edit:autocut -- input.mp4 output.mp4 --reframe=blur --punch=1.08
+```
+
+Unealta:
+- scoate pauzele (jump cuts) și face zoom 100%/108% alternativ la fiecare tăietură;
+- convertește la 9:16;
+- normalizează vocea la −14 LUFS;
+- scrie `output.cuts.json`, după care poți sincroniza subtitrări sau efecte.
+
+## Skill pentru Claude Code
+
+`.claude/skills/video-editor/` conține metoda de lucru, regulile măsurabile (timpi de citire, ritm, cameră, tranziții, sunet), structura pentru videoclipuri de 60s+, toate metodele de 3D (cod, Blender, AI 3D, AI video) și ghidul de filmare. Orice sesiune Claude Code din acest repo îl încarcă automat când e vorba de video.
+
 ## Analitice: ce se măsoară și cum învață
 
 **Credențiale** (variabile de mediu sau secrete GitHub):
