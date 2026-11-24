@@ -1,0 +1,24 @@
+{
+  "niche": "Animații 3D și motion design făcute din cod – satisfying loops, behind-the-scenes, tips de animație",
+  "audience": "Creatori, designeri și curioși (18–34) din România care urmăresc conținut vizual satisfăcător și vor să învețe animație",
+  "language": "ro",
+  "series": "3D DAILY",
+  "pillars": [
+    { "id": "satisfying", "name": "Satisfying loop", "description": "O buclă perfectă, hipnotică, cu un singur fapt curios despre ea" },
+    { "id": "howto", "name": "Cum e făcut", "description": "Un truc concret de animație/3D explicat în 3 pași scurți" },
+    { "id": "myth", "name": "Mit vs realitate", "description": "O idee greșită despre animație/AI/design, demontată" },
+    { "id": "challenge", "name": "Provocare", "description": "Întrebare sau provocare pentru comentarii (ex: ghicește cum e făcut)" }
+  ],
+  "hookTypes": [
+    { "id": "curiosity", "description": "Deschide o buclă de curiozitate pe care doar finalul o închide" },
+    { "id": "number", "description": "Un număr concret și surprinzător" },
+    { "id": "contrarian", "description": "Contrazice o credință comună" },
+    { "id": "challenge", "description": "Provoacă privitorul (ghicește / încearcă / nu clipi)" },
+    { "id": "pov", "description": "POV: situație cu care publicul se identifică" }
+  ],
+  "platforms": {
+    "tiktok": { "baseHashtags": ["#3danimation", "#satisfying", "#motiondesign", "#romania"], "postAt": "19:30", "maxHashtags": 5 },
+    "instagram": { "baseHashtags": ["#3danimation", "#motiondesign", "#satisfyingvideos", "#creativecoding", "#romania"], "postAt": "18:00", "maxHashtags": 5 },
+    "youtube": { "baseHashtags": ["#shorts", "#3danimation", "#satisfying"], "postAt": "17:00", "maxHashtags": 3 }
+  }
+}

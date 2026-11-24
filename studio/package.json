@@ -1,0 +1,54 @@
+{
+  "name": "shorts-studio",
+  "version": "1.0.0",
+  "description": "3D short-form video studio: daily loops for TikTok, Reels and Shorts, with an analytics feedback loop",
+  "repository": {},
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "^20.19.0 || ^22.13.0 || >=24"
+  },
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.13.0",
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
+    "@remotion/cli": "4.0.546",
+    "@remotion/fonts": "4.0.546",
+    "@remotion/three": "4.0.546",
+    "@remotion/transitions": "4.0.546",
+    "@types/three": "^0.187.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.546",
+    "three": "^0.187.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.546",
+    "@types/node": "^26.6.6",
+    "@types/react": "19.3.0",
+    "@types/web": "0.0.166",
+    "eslint": "10.15.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc",
+    "daily": "node scripts/daily.ts",
+    "plan": "node scripts/plan.ts",
+    "render:post": "node scripts/render.ts",
+    "publish": "node scripts/publish.ts",
+    "ideas": "node scripts/ideas.ts",
+    "analytics": "node scripts/analytics/fetch.ts && node scripts/analytics/analyze.ts",
+    "analytics:analyze": "node scripts/analytics/analyze.ts",
+    "analytics:demo": "node scripts/analytics/demo-data.ts && node scripts/analytics/analyze.ts",
+    "analytics:reset": "node -e \"const fs=require('fs');const r='data/registry.json';fs.rmSync('data/snapshots.jsonl',{force:true});fs.rmSync('data/insights.json',{force:true});if(fs.existsSync(r))fs.writeFileSync(r,JSON.stringify(JSON.parse(fs.readFileSync(r)).filter(e=>!e.postId.startsWith('demo-')),null,2)+'\\n')\""
+  },
+  "allowScripts": {
+    "esbuild": false
+  }
+}

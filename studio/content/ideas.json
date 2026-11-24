@@ -1,0 +1,107 @@
+[
+  {
+    "id": "seed-001",
+    "pillar": "satisfying",
+    "hookType": "challenge",
+    "hook": "Încearcă să găsești *tăietura*",
+    "beats": [
+      "Nu există niciuna",
+      "Ultimul cadru = primul cadru",
+      "De-asta îl vezi de *3 ori*"
+    ],
+    "cta": "Câte bucle ai văzut? *Comentează*",
+    "caption": "O buclă perfectă, fără nicio tăietură. Câte ture ai stat să te uiți? 👀",
+    "hashtags": [
+      "#loop",
+      "#oddlysatisfying"
+    ]
+  },
+  {
+    "id": "seed-002",
+    "pillar": "howto",
+    "hookType": "number",
+    "hook": "*3 linii* de cod fac asta",
+    "beats": [
+      "Unghi = 2π × cadru / durată",
+      "Doar frecvențe *întregi*",
+      "Rezultat: buclă infinită"
+    ],
+    "cta": "Salvează pentru mai târziu",
+    "caption": "Secretul buclelor perfecte: toate mișcările depind de același unghi, cu frecvențe întregi. Salvează-l!",
+    "hashtags": [
+      "#creativecoding",
+      "#threejs"
+    ]
+  },
+  {
+    "id": "seed-003",
+    "pillar": "myth",
+    "hookType": "contrarian",
+    "style": "glass",
+    "hook": "Nu, asta *nu* e AI",
+    "beats": [
+      "E sticlă simulată fizic",
+      "Lumina se refractă real",
+      "Totul randat din *cod*"
+    ],
+    "cta": "Urmărește pentru partea 2",
+    "caption": "Toată lumea crede că e AI. E de fapt fizică: refracție, dispersie, irizare – randate din cod.",
+    "hashtags": [
+      "#notai",
+      "#3dart"
+    ]
+  },
+  {
+    "id": "seed-004",
+    "pillar": "howto",
+    "hookType": "curiosity",
+    "style": "clay",
+    "hook": "Cum arată *Spider-Verse* în 3D",
+    "beats": [
+      "Lumină în 3 trepte",
+      "Puncte halftone în umbră",
+      "Contur de *cerneală*"
+    ],
+    "cta": "Vrei tutorial? Scrie *DA*",
+    "caption": "Look-ul din Spider-Verse, din 3 ingrediente: toon shading, halftone și contur de cerneală.",
+    "hashtags": [
+      "#spiderverse",
+      "#toonshading"
+    ]
+  },
+  {
+    "id": "seed-005",
+    "pillar": "challenge",
+    "hookType": "pov",
+    "style": "grid",
+    "hook": "POV: ai pus *loop* și nu te mai oprești",
+    "beats": [
+      "121 de piloni",
+      "2 valuri care se ciocnesc",
+      "0 tăieturi"
+    ],
+    "cta": "Trimite-l cuiva care are nevoie de *calm*",
+    "caption": "Pentru când ai nevoie de 10 secunde de liniște. Trimite-l cuiva 🫶",
+    "hashtags": [
+      "#calm",
+      "#oddlysatisfying"
+    ]
+  },
+  {
+    "id": "seed-006",
+    "pillar": "satisfying",
+    "hookType": "number",
+    "hook": "*360* de cadre. Zero tăieturi.",
+    "beats": [
+      "Fiecare cadru calculat",
+      "Nimic desenat de mână",
+      "Ochiul nu vede *sfârșitul*"
+    ],
+    "cta": "Urmărește: una nouă *zilnic*",
+    "caption": "360 de cadre calculate, nicio tăietură. Una nouă în fiecare zi.",
+    "hashtags": [
+      "#loop",
+      "#motiondesign"
+    ]
+  }
+]
