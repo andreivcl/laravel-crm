@@ -97,8 +97,9 @@ export const KineticLine: React.FC<{
         });
         const enterOpacity = instant ? 1 : p;
         const blur = instant ? 0 : (1 - p) * 18;
-        const dy = (1 - p) * (instant ? 16 : 60);
-        const rot = (1 - p) * (i % 2 === 0 ? -1 : 1) * (instant ? 1.5 : 6); // keep frame 0 (the cover) clean
+        // instant lines are fully set on their first frame (cover + seamless loop)
+        const dy = instant ? 0 : (1 - p) * 60;
+        const rot = instant ? 0 : (1 - p) * (i % 2 === 0 ? -1 : 1) * 6;
         return (
           <span
             key={i}

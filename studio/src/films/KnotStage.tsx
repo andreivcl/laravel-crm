@@ -23,7 +23,10 @@ export const cameraAt = (t: number) => {
   while (i < CAMERA.length - 2 && t >= CAMERA[i + 1].t) i++;
   const a = CAMERA[i];
   const b = CAMERA[i + 1];
-  const k = b.cut ? 0 : easeInOut(clamp01((t - a.t) / (b.t - a.t)));
+  // half ease-in-out, half linear: the camera never fully stops between keys
+  // (no dead holds), yet still eases into each key
+  const x = clamp01((t - a.t) / (b.t - a.t));
+  const k = b.cut ? 0 : 0.5 * x + 0.5 * easeInOut(x);
   const lerp = (x: number, y: number) => x + (y - x) * k;
   const az = (lerp(a.az, b.az) * Math.PI) / 180;
   const el = (lerp(a.el, b.el) * Math.PI) / 180;

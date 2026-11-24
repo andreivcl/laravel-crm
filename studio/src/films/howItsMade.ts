@@ -91,6 +91,10 @@ export type Text = {
   to: number; // starts leaving
   size: number;
   role?: "hook" | "cta" | "term";
+  /** measured text bounds [x, y, w, h] at delivery size, for QA size/contrast checks */
+  box?: [number, number, number, number];
+  /** shown complete on its first frame (no entrance) */
+  instant?: boolean;
 };
 
 const T = (id: string, text: string, b0: number, b1: number, size = 84, role?: Text["role"]): Text => ({
@@ -105,7 +109,7 @@ const T = (id: string, text: string, b0: number, b1: number, size = 84, role?: T
 // Spans come from the read-time rule: legible hold ≥ max(1.5 s, 1 s + 0.3 s × words),
 // counted after the last word has landed and before the exit starts.
 export const TEXTS: Text[] = [
-  T("hook", "Animația asta e *100% cod*", 0, 1.35, 104, "hook"),
+  { ...T("hook", "Animația asta e *100% cod*", 0, 1.35, 104, "hook"), box: [170, 425, 740, 130], instant: true },
   T("promise", "Uite cum: *5 pași*", 1.35, 2.95, 92),
   T("f1", "Începe cu o *formă*", 3.2, 4.75),
   T("f2", "Un *nod toric* (2,3)", 4.85, 6.4),
@@ -122,8 +126,10 @@ export const TEXTS: Text[] = [
   T("v2", "*Zero* tăieturi în buclă", 25.0, 26.6),
   // DECISION: social CTA only at the end (platform convention for comment prompts);
   // a comment ask in the first 3 s would compete with the hook. Not role "cta" for that reason.
-  T("cta1", "Ce să animez *mâine*?", 28.05, 29.6, 92),
-  T("cta2", "Scrie în *comentarii*", 29.62, 31, 92),
+  T("cta", "Comentează: ce animez *mâine*?", 28.05, 30.72, 92),
+  // DECISION: the last beat already shows the hook again, so the replay seam has
+  // no text pop (the loop is the point). It is a bridge, not a read: short on purpose.
+  { ...T("hookLoop", "Animația asta e *100% cod*", 30.75, 31, 104), instant: true },
 ];
 
 /**

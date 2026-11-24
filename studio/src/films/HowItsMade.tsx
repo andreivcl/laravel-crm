@@ -265,7 +265,8 @@ export const HowItsMade: React.FC = () => {
               duration={f(tx.to) - f(tx.from)}
               palette={palette}
               size={tx.size}
-              instant={tx.id === "hook"}
+              instant={tx.instant}
+              isLast={tx.id === "hookLoop"}
             />
           </AbsoluteFill>
         </Sequence>

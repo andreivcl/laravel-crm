@@ -25,7 +25,7 @@ import { ROOT } from "../lib.ts";
 const r3 = (x: number) => Math.round(x * 1000) / 1000;
 const words = (s: string) => s.replace(/\*/g, "").split(/\s+/).filter(Boolean).length;
 /** KineticLine: 2-frame word stagger, 14-frame entrance, 9-frame exit. */
-const arrived = (id: string, text: string) => (id === "hook" ? 0 : (2 + (words(text) - 1) * 2 + 14) / FPS);
+const arrived = (instant: boolean | undefined, text: string) => (instant ? 0 : (2 + (words(text) - 1) * 2 + 14) / FPS);
 const EXIT = 9 / FPS;
 
 const hardCuts = [LOOKS.find((l) => l.why.startsWith("time cut"))!.at, ...MONTAGE.map((m) => m.from), MONTAGE.at(-1)!.to];
@@ -61,7 +61,7 @@ const timeline = {
       ]),
       reads: TEXTS.filter((x) => x.from >= s.from && x.from < s.to).map((x) => ({
         what: x.text.replace(/\*/g, ""),
-        from: r3(x.from + arrived(x.id, x.text)),
+        from: r3(x.from + arrived(x.instant, x.text)),
         to: r3(x.to - EXIT),
       })),
       transitionOut: next
@@ -81,10 +81,11 @@ const timeline = {
   texts: TEXTS.map((x) => ({
     id: x.id,
     text: x.text.replace(/\*/g, ""),
-    from: r3(x.from + arrived(x.id, x.text)),
+    from: r3(x.from + arrived(x.instant, x.text)),
     to: r3(x.to - EXIT),
     role: x.role ?? null,
     px: x.size,
+    ...(x.box ? { box: x.box } : {}),
   })),
   terms: TERMS,
   camera: CAMERA.map((c) => ({ t: r3(c.t), zoom: r3(10.5 / c.dist), x: c.az, y: c.el, why: c.why })),

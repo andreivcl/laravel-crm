@@ -59,7 +59,8 @@ const padCutoff = (t: number) => (t < HERO ? 700 + 1300 * (t / HERO) : 3200);
 {
   const lpL = { y: 0 };
   const lpR = { y: 0 };
-  const phases = new Float64Array(64);
+  // 4 chords × 3 notes × (3 harmonics × 2 detuned voices) = 72 oscillators; index k*6+h(+3), h ≤ 3
+  const phases = new Float64Array(4 * 3 * 6 + 8);
   for (let i = 0; i < N; i++) {
     const t = i / SR;
     const b = Math.floor(t / bar(1));
@@ -213,19 +214,19 @@ const pluck = (t0: number, gain: number) => {
 };
 
 // cue table – every cue anchored to the spec, about half of the seams stay silent
-whoosh(bar(3), 0.7, 0.35, true); // rewind into the time cut
+whoosh(bar(3), 0.7, 0.2, true); // rewind into the time cut
 whoosh(bar(8) + BEAT / 2, 0.6, 0.22, false, 1); // wipe: wire → grey
 pluck(bar(10.5) + BEAT / 2, 0.22); // grey → toon ("cartoon" pop); no whoosh here
 whoosh(bar(13) + BEAT / 2, 0.6, 0.2, false, -1); // wipe → lit
 PANELS_AT.forEach((t, k) => tick(t + 0.12, 0.4 - k * 0.035, k % 2)); // panels land
 riser(bar(18.25), HERO - BEAT, 0.3); // build, hard stop into the silence
-impact(HERO, 0.62); // the payoff – loudest moment
+impact(HERO, 1.0); // the payoff – loudest moment
 const s3 = TEXTS.find((x) => x.id === "s3")!;
 [880, 1046.5, 1174.66, 1318.51, 1567.98].forEach((fr, k) => bell(s3.from + 0.35 + k * 0.07, fr, 0.06, -0.4 + k * 0.2)); // "dispersie"
 whoosh(bar(23), 0.5, 0.25, false, 1); // cut into the montage
 whoosh(bar(25.5), 0.4, 0.16, false, -1);
 whoosh(bar(26.5), 0.35, 0.12, false, 1);
-impact(bar(28), 0.3); // first sound after the second silence: CTA lands
+impact(bar(28), 0.4); // first sound after the second silence: CTA lands
 [440, 523.25, 659.25].forEach((fr, k) => bell(bar(28) + 0.05 + k * 0.03, fr, 0.05, (k - 1) * 0.3));
 
 // ------------------------------------------------------------ mix + silences
@@ -248,6 +249,12 @@ for (const s of SILENCES) {
     const g = i < a ? 1 - (i - (a - ramp)) / ramp : 0;
     outL[i] *= g;
     outR[i] *= g;
+  }
+}
+// guard: one NaN in a filter state silences everything after it
+for (let i = 0; i < N; i++) {
+  if (!Number.isFinite(outL[i]) || !Number.isFinite(outR[i])) {
+    throw new Error(`non-finite sample at ${(i / SR).toFixed(3)} s – check the synth voices`);
   }
 }
 // gentle soft-clip + loop-friendly edges
