@@ -3,6 +3,8 @@ import { Composition, Folder } from "remotion";
 import { Brief, briefSchema, defaultBrief, FPS, PALETTES } from "./brief";
 import { calculateDailyMetadata, DailyShort } from "./DailyShort";
 import { HowItsMade } from "./films/HowItsMade";
+import { InThisWorldEp1 } from "./films/inThisWorld/Episode";
+import { FRAMES as EP1_FRAMES } from "./films/inThisWorld/spec";
 import { FPS as FILM_FPS, FRAMES as FILM_FRAMES } from "./films/howItsMade";
 
 const vertical = { fps: FPS, width: 1080, height: 1920 } as const;
@@ -28,6 +30,15 @@ export const RemotionRoot: React.FC = () => {
           id="HowItsMade"
           component={HowItsMade}
           durationInFrames={FILM_FRAMES}
+          fps={FILM_FPS}
+          width={1080}
+          height={1920}
+        />
+        {/* Series "În lumea asta…" – original voxel cast */}
+        <Composition
+          id="InThisWorldEp1"
+          component={InThisWorldEp1}
+          durationInFrames={EP1_FRAMES}
           fps={FILM_FPS}
           width={1080}
           height={1920}

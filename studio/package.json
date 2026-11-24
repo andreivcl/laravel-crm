@@ -53,7 +53,11 @@
     "film:draft": "node scripts/film/sound.ts && remotion render HowItsMade out/films/how-its-made/draft.mp4 --scale=0.5 --crf=23",
     "film:master": "node scripts/film/sound.ts && remotion render HowItsMade out/films/how-its-made/master.mp4 --crf=18",
     "qa": "python3 tools/video-director/qa_video.py",
-    "edit:autocut": "node scripts/edit/autocut.ts"
+    "edit:autocut": "node scripts/edit/autocut.ts",
+    "ep1:timeline": "node scripts/film/ep1-timeline.ts",
+    "ep1:sound": "node scripts/film/ep1-sound.ts",
+    "ep1:draft": "node scripts/film/ep1-sound.ts && remotion render InThisWorldEp1 out/films/ep1/draft.mp4 --scale=0.5 --crf=23",
+    "ep1:master": "node scripts/film/ep1-sound.ts && remotion render InThisWorldEp1 out/films/ep1/master.mp4 --crf=18"
   },
   "allowScripts": {
     "esbuild": false
