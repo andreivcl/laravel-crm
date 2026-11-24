@@ -129,14 +129,13 @@ const STREET_WALKERS = (() => {
 const streetActors = (t: number): Actor[] => {
   const vexZ = -14 + (t - at("champ")) * 1.0;
   const actors: Actor[] = STREET_WALKERS.map((w, i) => {
-    let z = w.z0 + w.v * t;
+    const z = w.z0 + w.v * t;
     let x = w.x;
     // step aside when Vex comes close (after he appears)
     if (t > at("champ")) {
       const d = Math.abs(z - vexZ);
       const away = (1 - Math.min(1, d / 4)) * (Math.abs(x) < 3.2 ? 1 : 0);
       x = x + Math.sign(x || 1) * away * 2.0;
-      if (away > 0.2) z = z;
     }
     return { id: `w${i}`, look: w.look, pos: [x, 0, z] as V3, rotY: w.v > 0 ? 0 : Math.PI, expr: "neutral" as Expr, pose: { walk: t * 6 + w.phase, t }, number: w.n, set: "street" as const };
   });
